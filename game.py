@@ -26,7 +26,8 @@ def explosion_color(progress):
 
 def on_city_destroyed(city):
     """Called when a city is hit; add screen shake, sounds, or a game-over warning here."""
-    pass
+    print(f"WARNING: City at position {city.pos} has been destroyed!")
+    print("CITY DESTROYED!")
 
 
 def city_repair_threshold():
