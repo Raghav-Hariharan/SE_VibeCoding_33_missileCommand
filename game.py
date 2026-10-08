@@ -100,10 +100,11 @@ class Game:
         self.spawn_timer = 1.0
         for battery in self.batteries:
             battery.alive, battery.ammo = True, AMMO_PER_BATTERY
-
     def nearest_battery(self, target):
-        return min(self.batteries, key=lambda b: b.pos.distance_squared_to(target))
-
+        available = [b for b in self.batteries if b.alive and b.ammo > 0]
+        if not available:
+            return None
+        return min(available, key=lambda b: b.pos.distance_squared_to(target))
     def launch(self, target):
         target = pygame.Vector2(target)
         if self.state != "play" or target.y > GROUND_Y - 20:
